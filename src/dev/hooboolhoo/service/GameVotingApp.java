@@ -11,17 +11,17 @@ public class GameVotingApp {
     Scanner sc = new Scanner(System.in);
     private GameList gameList;
     
-    public GameVotingApp() {
-        this.gameList = new GameList(); 
+    public GameVotingApp(GameList gameList) {
+    	this.gameList = gameList;
     }
     
  // GameVotingApp 시작 시 실행되는 메서드
-    public void startGame() { 
+    public boolean startGame() { 
         System.out.println("호불호 게임을 시작합니다.");
 
         displayGameList();
         int selectedGameIndex = getSelectedGameIndex();
-        if (selectedGameIndex == -1) return;
+        if (selectedGameIndex == -1) return false;
 
         Game selectedGame = gameList.getGame(selectedGameIndex);
 
@@ -34,6 +34,8 @@ public class GameVotingApp {
 
         displayGameDetails(selectedGame);
         displayComments(selectedGame);
+        
+        return true;
     }
 
     // 게임 리스트를 출력하는 메서드

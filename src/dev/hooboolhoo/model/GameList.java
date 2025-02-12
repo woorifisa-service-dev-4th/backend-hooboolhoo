@@ -5,6 +5,7 @@ import java.util.List;
 
 public class GameList {
     private List<Game> gameList = new ArrayList<Game>();
+    private static GameList instance;
 
     public GameList() {
     	Game dummyGame1 = new Game("카리나 vs 윈터", "썸네일 1");
@@ -35,4 +36,11 @@ public class GameList {
             return null; 
         }
     }
+
+	public static GameList getInstance() {
+		if (instance == null) {  
+            instance = new GameList();
+        }
+        return instance;
+	}
 }

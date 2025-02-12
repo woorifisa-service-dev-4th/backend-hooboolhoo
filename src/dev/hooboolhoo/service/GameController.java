@@ -1,19 +1,18 @@
 package dev.hooboolhoo.service;
 
-import dev.hooboolhoo.model.Game;
-import dev.hooboolhoo.model.GameCreator;
-import dev.hooboolhoo.model.User;
-
 import java.util.List;
 import java.util.Scanner;
+
+import dev.hooboolhoo.model.Game;
+import dev.hooboolhoo.model.GameCreator;
+import dev.hooboolhoo.model.GameList;
+import dev.hooboolhoo.model.User;
 
 public class GameController {
     // List<Game> gameList;
     List<User> userList;
     Scanner sc = new Scanner(System.in);
     int input = -1;
-    
-    GameVotingApp gameVotingApp = new GameVotingApp();
 
     public void startGame() {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
@@ -22,7 +21,7 @@ public class GameController {
         userListController.loadUserList();
 
         // Game List 가져오기
-        // getGameList();
+        GameList gameList = GameList.getInstance(); 
 
         AuthManager authManager = new AuthManager(userListController);
 
@@ -52,14 +51,14 @@ public class GameController {
             }
 
             if (authManager.getIsSignIn()) {
-                if (playGame()) {
+                if (playGame(gameList)) {
                     return;
                 }
             }
         }
     }
 
-    public boolean playGame() {
+    public boolean playGame(GameList gameList) {
         while (true) {
             System.out.println("메뉴");
             System.out.println("0. 게임 종료 1. 호불호 게임하기 2. 게임 만들기 3. 마이페이지");
@@ -73,8 +72,12 @@ public class GameController {
                     return true;
                 case 1:
                   System.out.println("[호불호 게임하기]");
-                	gameVotingApp.startGame();
-                    break;
+                  GameVotingApp gameVotingApp = new GameVotingApp(gameList);  // gameList를 전달하여 GameVotingApp 객체 생성
+                  if (gameVotingApp.startGame()) {
+                      break;
+                  } else {
+                      return true;
+                  }
                 case 2:
                     // 게임 만들기: GameCreator를 이용해 vs 게임 생성
                     System.out.println("[게임 만들기]");
