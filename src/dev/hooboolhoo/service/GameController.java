@@ -12,6 +12,8 @@ public class GameController {
     List<User> userList;
     Scanner sc = new Scanner(System.in);
     int input = -1;
+    
+    GameVotingApp gameVotingApp = new GameVotingApp();
 
     public void startGame() {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
@@ -70,9 +72,8 @@ public class GameController {
                     System.out.println("게임을 종료합니다.");
                     return true;
                 case 1:
-                    // 호불호 게임하기 실행 로직 구현
-                    System.out.println("[호불호 게임하기]");
-                    // 예: vs 게임 플레이 메서드 호출
+                  System.out.println("[호불호 게임하기]");
+                	gameVotingApp.startGame();
                     break;
                 case 2:
                     // 게임 만들기: GameCreator를 이용해 vs 게임 생성
