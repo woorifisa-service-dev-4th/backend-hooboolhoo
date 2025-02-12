@@ -3,11 +3,6 @@ package dev.hooboolhoo.model;
 public class Choice {
     private String name;
     private int count;
-
-    // count 초기값 0
-    public Choice(String name) {
-        this(name, 0);
-    }
     
     public Choice(String name, int count) {
         this.name = name;
