@@ -7,11 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        Choice choice = new Choice();
-
-        System.out.println(choice.getCount());
-//        GameController gameController = new GameController();
-//        gameController.startGame();
+        GameController gameController = new GameController();
+        gameController.startGame();
     }
 }

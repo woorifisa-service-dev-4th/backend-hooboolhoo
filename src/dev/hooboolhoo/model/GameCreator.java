@@ -38,8 +38,8 @@ public class GameCreator {
         System.out.println("게임 설명: " + newGame.getSubTitle());
         System.out.println("게임 카테고리: " + newGame.getCategory());
         System.out.println("선택지:");
-        for (int i = 0; i < newGame.getChoice().size(); i++) {
-            System.out.println("  " + (i + 1) + ". " + newGame.getChoice().get(i).getName());
+        for (int i = 0; i < newGame.getChoices().size(); i++) {
+            System.out.println("  " + (i + 1) + ". " + newGame.getChoices().get(i).getName());
         }
         
         return newGame;

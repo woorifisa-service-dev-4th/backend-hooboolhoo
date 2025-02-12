@@ -19,7 +19,8 @@ public class GameController {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
 
         UserListController userListController = new UserListController();
-        userListController.loadUserList();
+        // 유저 목록 로드하기 (더미 데이터)
+         userListController.loadUserList();
 
         // Game List 가져오기
         // getGameList();
@@ -69,7 +70,7 @@ public class GameController {
             System.out.println("0. 게임 종료 1. 호불호 게임하기 2. 게임 만들기 3. 마이페이지");
             System.out.print("입력: ");
             input = sc.nextInt();
-            sc.nextLine(); // 개행 문자 제거
+            // sc.nextLine(); // 개행 문자 제거
 
             switch (input) {
                 case 0:

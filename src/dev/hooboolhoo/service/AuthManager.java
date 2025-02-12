@@ -121,6 +121,14 @@ public class AuthManager {
 
     private int checkValidation(String id) {
         boolean isAlreadySignUp = false;
+        List <User> userList = userListController.getUserList();
+
+        for (User user : userList) {
+            if (user.getId().equals(id)) {
+                isAlreadySignUp = true;
+                break;
+            }
+        }
 
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(id);
