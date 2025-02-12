@@ -10,7 +10,7 @@ public class UserListController {
 
     public void loadUserList() { // 더미데이터 주입
         User dummyUser1 = new User("papa021326@naver.com","eratchacha","990213");
-        User dummyUser2 = new User("","","");
+        User dummyUser2 = new User("asd@naver.com","정민","1234");
         User dummyUser3 = new User("","","");
 
         userList.add(dummyUser1);
