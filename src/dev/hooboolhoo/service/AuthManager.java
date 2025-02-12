@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class AuthManager {
     UserListController userListController;
 
-    private CurrentUser currentUser;
+    private CurrentUser currentUser = CurrentUser.getInstance();
     private boolean isSignIn = false;
 
     private static final Scanner sc = new Scanner(System.in);
@@ -20,9 +20,8 @@ public class AuthManager {
                     "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                     "A-Z]{2,7}$";
 
-    public AuthManager(UserListController userListController, CurrentUser currentUser) {
+    public AuthManager(UserListController userListController) {
         this.userListController = userListController;
-        this.currentUser = currentUser;
     }
 
     public boolean getIsSignIn() {

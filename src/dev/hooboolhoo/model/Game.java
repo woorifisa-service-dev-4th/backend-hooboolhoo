@@ -2,13 +2,15 @@ package dev.hooboolhoo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Game {
 	private String author;
 	private String category;
 	
 	private String gameThumbnail;
-	
+
+	private UUID id = UUID.randomUUID();
 	private String gameTitle;
 	private String subTitle;
 	private int leftButtonCount = 0;
@@ -24,14 +26,19 @@ public class Game {
         choices = new ArrayList<>();
     }
   
-	public Game(String gameTitle, String gamethumbnail) {
+	public Game(String gameTitle, String gamethumbnail, String author, List<Choice> choices) {
 		this.gameTitle = gameTitle;
         this.gameThumbnail = gameThumbnail;
         this.choices = choices;
         this.comments = new ArrayList<>();
+		this.author = author;
     }
 
-//	public String getGameId() {
+	public UUID getId() {
+		return id;
+	}
+
+	//	public String getGameId() {
 //		return gameId;
 //	}
 
@@ -41,6 +48,10 @@ public class Game {
 	
 	public void setNickName(String author) {
 		this.author = author;
+	}
+
+	public String getAuthor() {
+		return author;
 	}
 
 	public String getCategory() {
@@ -126,4 +137,8 @@ public class Game {
     public void addChoice(Choice choice) {
         this.choices.add(choice);
     }
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 }
