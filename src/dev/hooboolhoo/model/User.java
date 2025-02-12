@@ -2,6 +2,7 @@ package dev.hooboolhoo.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class User {
     private String id;
@@ -59,5 +60,13 @@ public class User {
 
     public void setMyTests(List<String> myTests) {
         this.myTests = myTests;
+    }
+
+    public void addMyTests(String testId) {
+        myTests.add(testId);
+    }
+
+    public void addResult(UUID id) {
+        testResults.add(id.toString());
     }
 }

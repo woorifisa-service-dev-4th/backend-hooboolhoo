@@ -10,7 +10,8 @@ import dev.hooboolhoo.model.GameList;
 public class GameVotingApp {
     Scanner sc = new Scanner(System.in);
     private GameList gameList;
-    
+    private CurrentUser currentUser = CurrentUser.getInstance();
+
     public GameVotingApp(GameList gameList) {
     	this.gameList = gameList;
     }
@@ -34,7 +35,8 @@ public class GameVotingApp {
 
         displayGameDetails(selectedGame);
         displayComments(selectedGame);
-        
+
+        currentUser.getUser().addResult(selectedGame.getId());
         return true;
     }
 
@@ -80,10 +82,12 @@ public class GameVotingApp {
         if (buttonChoice.equalsIgnoreCase("L")) {
             selectedGame.voteLeft();
             choiceType = true;
+            selectedGame.getChoices().get(0).incrementCount();
             System.out.println("왼쪽 버튼을 선택했습니다.");
         } else if (buttonChoice.equalsIgnoreCase("R")) {
             selectedGame.voteRight();
             choiceType = false;
+            selectedGame.getChoices().get(1).incrementCount();
             System.out.println("오른쪽 버튼을 선택했습니다.");
         } else {
             System.out.println("잘못된 입력입니다.");
@@ -110,7 +114,7 @@ public class GameVotingApp {
             sc.nextLine();  
             String newComment = sc.nextLine();
             
-            Comment comment = new Comment("User", newComment, choiceType);
+            Comment comment = new Comment(currentUser.getUser().getNickname(), newComment, choiceType);
             selectedGame.addComment(comment);
             System.out.println("댓글이 정상적으로 등록되었습니다.");
         }

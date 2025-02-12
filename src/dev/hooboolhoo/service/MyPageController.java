@@ -3,24 +3,24 @@ package dev.hooboolhoo.service;
 import dev.hooboolhoo.model.Choice;
 import dev.hooboolhoo.model.Comment;
 import dev.hooboolhoo.model.Game;
+import dev.hooboolhoo.model.GameList;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MyPageController {
     private Scanner sc = new Scanner(System.in);
-
-    public boolean startMyPage(CurrentUser currentUser) {
-        String nickname = currentUser.getUser().getNickname();
-        String id = currentUser.getUser().getId();
-        String password = currentUser.getUser().getPassword();
-        List<String> testResults = currentUser.getUser().getTestResults();
-        List<String> myTests = currentUser.getUser().getMyTests();
-
-        System.out.printf("%s님의 마이페이지\n", nickname);
+    private GameList gameList = GameList.getInstance();
+    private CurrentUser currentUser = CurrentUser.getInstance();
+    public boolean startMyPage() {
+        System.out.printf("%s님의 마이페이지\n", currentUser.getUser().getNickname());
         int input = -1;
+
         while(true) {
             System.out.println("0. 상위 페이지로 이동 1. 내가 한 게임 확인하기 2. 내가 만든 게임 확인하기 3. 프로그램 종료");
+            System.out.print("입력: ");
+            input = sc.nextInt();
+            sc.nextLine();
 
             switch(input) {
                 case 0:
@@ -28,11 +28,11 @@ public class MyPageController {
                     return true;
                 case 1:
                     System.out.println("[내가 한 게임들]");
-                    showTestResults(currentUser);
+                    showTestResults(currentUser.getUser().getTestResults());
                     break;
                 case 2:
                     System.out.println("[내가 만든 게임들]");
-                    showTests(currentUser);
+                    showTests(currentUser.getUser().getMyTests());
                     break;
                 case 3:
                     System.out.println("프로그램을 종료합니다.");
@@ -58,15 +58,20 @@ public class MyPageController {
 
         System.out.println("댓글 목록");
         System.out.println("---------------------------------");
-        for (Comment comment : game.getComments()) {
-            showChoice(comment);
+        if (game.getComments() != null) {
+            for (Comment comment : game.getComments()) {
+                showChoice(comment);
+            }
+        }
+        else {
+            System.out.println("아직 댓글이 없습니다.\n");
         }
     }
 
     private void showChoice(Comment comment) {
         String tab = "";
-        if (comment.getChoiceType()) {
-            tab = "             ";
+        if (!comment.getChoiceType()) {
+            tab = "                                         ";
         }
 
         System.out.printf("%s 작성자: %s\n", tab, comment.getWriter());
@@ -74,28 +79,36 @@ public class MyPageController {
         System.out.printf("%s 작성일자: %s\n", tab, comment.getDate().toString());
     }
 
-    private void showTestResults(CurrentUser currentUser) {
-        List<String> testResults = currentUser.getUser().getTestResults();
+    private void showTestResults(List<String> testResults) {
         int ind = 0;
 
-        /*
-        for (Game game: gameList) {
-            if (game.getTitle().equals(testResults[ind++]) {
-               showGame(game);
-        }
-         */
+        if (!testResults.isEmpty()) {
 
+            for (Game game : gameList.getGameList()) {
+                for (String result : testResults) {
+                    if (game.getId().toString().equals(result)) {
+                        showGame(game);
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("플레이한 게임이 없습니다.");
+        }
     }
 
-    private void showTests(CurrentUser currentUser) {
-        List<String> myTests = currentUser.getUser().getMyTests();
-        int ind = 0;
-
-        /*
-        for (Game game: gameList) {
-            if (game.getAuthor().equals(myTests[ind++]) {
-               showGame(game);
+    private void showTests(List<String> myTests) {
+        if(!myTests.isEmpty()) {
+            for (Game game : gameList.getGameList()) {
+                for (String myTest : myTests) {
+                    if (game.getAuthor().equals(myTest)) {
+                        showGame(game);
+                    }
+                }
+            }
         }
-         */
+        else {
+            System.out.println("내가 만든 게임이 아직 없습니다.");
+        }
     }
 }
