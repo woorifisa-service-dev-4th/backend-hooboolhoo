@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
 	private String author;
 	private String category;
 	
@@ -15,15 +14,19 @@ public class Game {
 	private int leftButtonCount = 0;
 	private int rightButtonCount = 0;
 	
-	List<Choice> choice;
+	List<Choice> choices;
 	List<Comment> comments;
 
 	private int totalCount;
 	
+  public Game() {
+        choices = new ArrayList<>();
+    }
+  
 	public Game(String gameTitle, String gamethumbnail) {
 		this.gameTitle = gameTitle;
         this.gameThumbnail = gameThumbnail;
-        this.choice = choice;
+        this.choices = choices;
         this.comments = new ArrayList<>();
     }
 
@@ -71,8 +74,8 @@ public class Game {
 		this.subTitle = subTitle;
 	}
 
-	public List<Choice> getChoice() {
-		return choice;
+	public List<Choice> getChoices() {
+		return choices;
 	}
 	
 	public List<Comment> getComments() {
@@ -82,8 +85,8 @@ public class Game {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public void setChoice(List<Choice> choice) {
-		this.choice = choice;
+	public void setChoices(List<Choice> choice) {
+		this.choices = choices;
 	}
 
 
@@ -118,6 +121,8 @@ public class Game {
 		comments.add(comment);
 	}
 	
-	
-	
+    
+    public void addChoice(Choice choice) {
+        this.choices.add(choice);
+    }
 }

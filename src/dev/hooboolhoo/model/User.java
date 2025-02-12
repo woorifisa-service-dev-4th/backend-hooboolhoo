@@ -1,19 +1,28 @@
 package dev.hooboolhoo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String id;
-    private String password; // TODO: Java Security
+    private String password;
     private String nickname;
     // private String profileImg;
-    private String[] testResults;
-    private String[] myTests;
+    private List<String> testResults = new ArrayList<String>();
+    private List<String> myTests = new ArrayList<String>();
 
-    public User(String[] testResults, String id, String password, String nickname, String[] myTests) {
+    public User(String id, String password, String nickname, List<String> testResults, List<String> myTests) {
         this.id = id;
         this.password = password;
         this.nickname = nickname;
         this.testResults = testResults;
         this.myTests = myTests;
+    }
+
+    public User(String id, String nickname, String password) {
+        this.id = id;
+        this.nickname = nickname;
+        this.password = password;
     }
 
     public String getId() {
@@ -28,11 +37,11 @@ public class User {
         return nickname;
     }
 
-    public String[] getTestResults() {
+    public List<String> getTestResults() {
         return testResults;
     }
 
-    public String[] getMyTests() {
+    public List<String> getMyTests() {
         return myTests;
     }
 
@@ -44,13 +53,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public void setTestResults(String[] testResults) {
+    public void setTestResults(List<String> testResults) {
         this.testResults = testResults;
     }
 
-    public void setMyTests(String[] myTests) {
+    public void setMyTests(List<String> myTests) {
         this.myTests = myTests;
     }
 }
-
-
