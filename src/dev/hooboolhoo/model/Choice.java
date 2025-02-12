@@ -4,6 +4,10 @@ public class Choice {
     private String name;
     private int count;
 
+    public Choice() {
+
+    }
+
     public Choice(String name, int count) {
         this.name = name;
         this.count = count;
