@@ -76,7 +76,6 @@ public class Game {
 		this.choice = choice;
 	}
 
-
 	public int getTotalCount() {
 		return totalCount;
 	}
