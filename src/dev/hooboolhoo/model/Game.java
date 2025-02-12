@@ -3,11 +3,11 @@ package dev.hooboolhoo.model;
 import java.util.List;
 
 public class Game {
-	private String gameId;
-	private String nickname;
+
+	private String author;
 	private String category;
 	
-	private String gamethumbnail;
+	private String gameThumbnail;
 	
 	private String gameTitle;
 	private String subTitle;
@@ -15,22 +15,18 @@ public class Game {
 	List<Choice> choice;
 	List<Comments> comments;
 
-	int totalCount;
+	private int totalCount;
 
 	public String getGameId() {
-		return gameId;
-	}
-
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
+		
 	}
 
 	public String getNickName() {
-		return nickname;
+		return author;
 	}
 	
-	public void setNickName(String nickName) {
-		this.nickname = nickName;
+	public void setNickName(String author) {
+		this.author = author;
 	}
 
 	public String getCategory() {
@@ -42,11 +38,11 @@ public class Game {
 	}
 
 	public String getGamethumbnail() {
-		return gamethumbnail;
+		return gameThumbnail;
 	}
 
 	public void setGamethumbnail(String gamethumbnail) {
-		this.gamethumbnail = gamethumbnail;
+		this.gameThumbnail = gamethumbnail;
 	}
 
 	public String getGameTitle() {
