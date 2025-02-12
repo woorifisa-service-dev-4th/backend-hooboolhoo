@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Game {
 	private String gameId;
-	private String nickName;
+	private String nickname;
 	private String category;
 	
 	private String gamethumbnail;
@@ -26,11 +26,11 @@ public class Game {
 	}
 
 	public String getNickName() {
-		return nickName;
+		return nickname;
 	}
 	
 	public void setNickName(String nickName) {
-		this.nickName = nickName;
+		this.nickname = nickName;
 	}
 
 	public String getCategory() {
