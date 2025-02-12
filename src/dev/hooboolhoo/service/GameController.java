@@ -10,6 +10,8 @@ public class GameController {
     List<User> userList;
     Scanner sc = new Scanner(System.in);
     int input = -1;
+    
+    GameVotingApp gameVotingApp = new GameVotingApp();
 
     public void startGame() {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
@@ -66,6 +68,7 @@ public class GameController {
                     System.out.println("게임을 종료합니다.");
                     return true;
                 case 1:
+                	gameVotingApp.startGame();
                     break;
                 case 2:
                     break;

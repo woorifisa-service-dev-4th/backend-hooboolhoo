@@ -2,3 +2,9 @@
 .idea
 *.iml
 /bin/
+/.metadata/
+src/.classpath
+src/.project
+src/dev/hooboolhoo/.gitignore
+src/dev/hooboolhoo/model/.gitignore
+src/dev/hooboolhoo/service/.gitignore

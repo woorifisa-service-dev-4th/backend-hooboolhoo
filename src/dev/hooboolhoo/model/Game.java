@@ -13,9 +13,16 @@ public class Game {
 	private String subTitle;
 	
 	List<Choice> choice;
-	List<Comments> comments;
+	List<Comment> comments;
 
 	private int totalCount;
+	
+	public Game(String gameTitle, String gamethumbnail, List<Choice> choices, List<Comment> comments) {
+		this.gameTitle = gameTitle;
+        this.gameThumbnail = gameThumbnail;
+        this.choice = choice;
+        this.comments = comments;
+    }
 
 	public String getGameId() {
 		
@@ -65,11 +72,11 @@ public class Game {
 		return choice;
 	}
 	
-	public List<Comments> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comments> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 	public void setChoice(List<Choice> choice) {
