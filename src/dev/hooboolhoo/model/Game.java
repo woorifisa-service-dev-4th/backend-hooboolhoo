@@ -13,13 +13,13 @@ public class Game {
 	private String subTitle;
 	
 	List<Choice> choice;
-	List<Comments> comments;
+	List<Comment> comments;
 
 	private int totalCount;
 
-	public String getGameId() {
-		
-	}
+//	public String getGameId() {
+//		
+//	}
 
 	public String getNickName() {
 		return author;
@@ -65,11 +65,11 @@ public class Game {
 		return choice;
 	}
 	
-	public List<Comments> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comments> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 	public void setChoice(List<Choice> choice) {
