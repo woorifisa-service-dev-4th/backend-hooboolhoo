@@ -20,7 +20,7 @@ public class Choice {
     public void setCount(int count) {
         this.count = count;
     }
-
+    
     public void setCount() {
         count++;
     }
