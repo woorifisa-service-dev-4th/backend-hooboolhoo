@@ -1,5 +1,6 @@
 package dev.hooboolhoo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -11,17 +12,19 @@ public class Game {
 	
 	private String gameTitle;
 	private String subTitle;
+	private int leftButtonCount = 0;
+	private int rightButtonCount = 0;
 	
 	List<Choice> choice;
 	List<Comment> comments;
 
 	private int totalCount;
 	
-	public Game(String gameTitle, String gamethumbnail, List<Choice> choices, List<Comment> comments) {
+	public Game(String gameTitle, String gamethumbnail) {
 		this.gameTitle = gameTitle;
         this.gameThumbnail = gameThumbnail;
         this.choice = choice;
-        this.comments = comments;
+        this.comments = new ArrayList<>();
     }
 
 	public String getGameId() {
@@ -90,6 +93,29 @@ public class Game {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+	}
+	
+	// 투표 수 증가 메서드 
+	public void voteLeft() {
+        leftButtonCount++;
+    }
+
+    public void voteRight() {
+        rightButtonCount++;
+    }
+
+    // 투표 수 조회 메서드
+    public int getLeftButtonCount() {
+        return leftButtonCount;
+    }
+
+    public int getRightButtonCount() {
+        return rightButtonCount;
+    }
+	
+    // 댓글 추가 메서드
+	public void addComment(Comment comment) {
+		comments.add(comment);
 	}
 	
 	

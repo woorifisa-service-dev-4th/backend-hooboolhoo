@@ -14,14 +14,17 @@ public class GameVotingApp {
     private List<String> comments = new ArrayList<>();
     private int leftButtonCount = 0;
     private int rightButtonCount = 0;
+    
+    public GameVotingApp() {
+    	GameDummyData();
+    }
 
     // 더미데이터
-    public GameVotingApp() {
-        Game game1 = new Game("카리나 vs 윈터", "썸네일 1", null, null);
-        Game game2 = new Game("짬뽕 vs 짜장", "썸네일 2", null, null);
-        Game game3 = new Game("집밥 vs 배달", "썸네일 3", null, null);
-
-        this.games = Arrays.asList(game1, game2, game3);
+    private void GameDummyData() {
+        games = new ArrayList<>();
+        games.add(new Game("카리나 vs 윈터", "썸네일 1"));
+        games.add(new Game("짬뽕 vs 짜장", "썸네일 2"));
+        games.add(new Game("집밥 vs 배달", "썸네일 3"));
     }
 
     // GameVotingApp 시작 시 실행되는 메서드
@@ -38,10 +41,10 @@ public class GameVotingApp {
 
         boolean choiceType = handleButtonSelection(selectedGame);
 
-        addComment(choiceType);
+        addComment(selectedGame,choiceType);
 
         displayGameDetails(selectedGame);
-        displayComments();
+        displayComments(selectedGame);
     }
 
     // 게임 리스트를 출력하는 메서드
@@ -83,11 +86,11 @@ public class GameVotingApp {
         boolean choiceType = false;
         
         if (buttonChoice.equalsIgnoreCase("L")) {
-            leftButtonCount++; 
+        	selectedGame.voteLeft();
             choiceType = true;
             System.out.println("왼쪽 버튼을 선택했습니다.");
         } else if (buttonChoice.equalsIgnoreCase("R")) {
-            rightButtonCount++;  
+        	selectedGame.voteRight();
             choiceType = false;
             System.out.println("오른쪽 버튼을 선택했습니다.");
         } else {
@@ -95,8 +98,8 @@ public class GameVotingApp {
         }
 
         System.out.println("\n현재 버튼 클릭 수");
-        System.out.println("왼쪽 버튼 (L) 클릭 수: " + leftButtonCount);
-        System.out.println("오른쪽 버튼 (R) 클릭 수: " + rightButtonCount);
+        System.out.println("왼쪽 버튼 (L) 클릭 수: " + selectedGame.getLeftButtonCount());
+        System.out.println("오른쪽 버튼 (R) 클릭 수: " + selectedGame.getRightButtonCount());
         
         return choiceType;
     }
@@ -107,7 +110,7 @@ public class GameVotingApp {
     }
 
     // 댓글 추가 메서드
-    private void addComment(boolean choiceType) {
+    private void addComment(Game selectedGame, boolean choiceType) {
         System.out.print("\n댓글을 추가하려면 (Y/N): ");
         String addCommentChoice = sc.next();
         if (addCommentChoice.equalsIgnoreCase("Y")) {
@@ -115,17 +118,22 @@ public class GameVotingApp {
             sc.nextLine();  
             String newComment = sc.nextLine();
             
-            Comment comment = new Comment ("User", newComment, choiceType);
-            comments.add(newComment);  
+            Comment comment = new Comment("User", newComment, choiceType);
+            selectedGame.addComment(comment);
             System.out.println("댓글이 정상적으로 등록되었습니다.");
         }
     }
 
     // 댓글 출력 메서드
-    private void displayComments() {
-        System.out.println("댓글창");
-        for (int i = 0; i < comments.size(); i++) {
-            System.out.println((i + 1) + ". " + comments.get(i));
+    private void displayComments(Game selectedGame) {
+    	System.out.println("=== 댓글 목록 ===");
+        List<Comment> comments = selectedGame.getComments();
+        if (comments.isEmpty()) {
+            System.out.println("아직 댓글이 없습니다.");
+        } else {
+            for (int i = 0; i < comments.size(); i++) {
+                System.out.println((i + 1) + ". " + comments.get(i).getContent());
+            }
         }
     }
 }
