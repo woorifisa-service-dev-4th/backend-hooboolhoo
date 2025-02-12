@@ -13,8 +13,9 @@ public class Game {
 	private String subTitle;
 	private int leftButtonCount = 0;
 	private int rightButtonCount = 0;
-	
+
 	List<Choice> choices;
+
 	List<Comment> comments;
 
 	private int totalCount;
@@ -30,9 +31,9 @@ public class Game {
         this.comments = new ArrayList<>();
     }
 
-	public String getGameId() {
-		
-	}
+//	public String getGameId() {
+//		return gameId;
+//	}
 
 	public String getNickName() {
 		return author;
