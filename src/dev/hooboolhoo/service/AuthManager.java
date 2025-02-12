@@ -9,7 +9,10 @@ import java.util.regex.Pattern;
 
 public class AuthManager {
     UserListController userListController;
+
+    private CurrentUser currentUser;
     private boolean isSignIn = false;
+
     private static final Scanner sc = new Scanner(System.in);
     private static final String EMAIL_REGEX =
             "^[a-zA-Z0-9_+&*-]+(?:\\." +
@@ -17,8 +20,9 @@ public class AuthManager {
                     "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                     "A-Z]{2,7}$";
 
-    public AuthManager(UserListController userListController) {
+    public AuthManager(UserListController userListController, CurrentUser currentUser) {
         this.userListController = userListController;
+        this.currentUser = currentUser;
     }
 
     public boolean getIsSignIn() {
@@ -70,7 +74,7 @@ public class AuthManager {
         }
     }
 
-    public boolean signIn() {
+    public Boolean signIn() {
         while(true) {
         System.out.print("아이디: ");
         String id = sc.nextLine();
@@ -85,6 +89,7 @@ public class AuthManager {
                 isIdExist = true;
                 password = user.getPassword();
                 nickname = user.getNickname();
+                currentUser.setUser(user);
                 break;
             }
         }

@@ -24,7 +24,8 @@ public class GameController {
         // Game List 가져오기
         // getGameList();
 
-        AuthManager authManager = new AuthManager(userListController);
+        CurrentUser currentUser = CurrentUser.getInstance();
+        AuthManager authManager = new AuthManager(userListController, currentUser);
 
         while (true) {
             System.out.println("0. 종료 1. 회원가입 2. 로그인");
@@ -42,7 +43,7 @@ public class GameController {
                     break;
                 case 2:
                     System.out.println("[로그인]");
-                    if (!authManager.signIn()) {
+                    if (authManager.signIn() == null) {
                         System.out.println("로그인 실패! 다시 시도해주세요.");
                     }
                     break;
@@ -52,15 +53,18 @@ public class GameController {
             }
 
             if (authManager.getIsSignIn()) {
-                if (playGame()) {
+
+                if (playGame(currentUser)) {
                     return;
                 }
             }
         }
     }
 
-    public boolean playGame() {
-        while (true) {
+    public boolean playGame(CurrentUser currentUser) {
+        MyPageController myPageController = new MyPageController();
+
+        while(true) {
             System.out.println("메뉴");
             System.out.println("0. 게임 종료 1. 호불호 게임하기 2. 게임 만들기 3. 마이페이지");
             System.out.print("입력: ");
@@ -83,9 +87,11 @@ public class GameController {
                     // 추가로 생성된 게임을 저장하거나 관리하는 로직이 있다면 작성
                     break;
                 case 3:
-                    // 마이페이지 로직 구현
-                    System.out.println("[마이페이지]");
-                    break;
+                    if (myPageController.startMyPage(currentUser)) {
+                        break;
+                    } else {
+                        return true;
+                    }
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                     break;
