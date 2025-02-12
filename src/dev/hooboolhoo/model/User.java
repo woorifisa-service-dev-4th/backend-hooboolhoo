@@ -61,5 +61,3 @@ public class User {
         this.myTests = myTests;
     }
 }
-
-

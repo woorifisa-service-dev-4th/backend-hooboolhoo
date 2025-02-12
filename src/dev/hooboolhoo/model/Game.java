@@ -1,9 +1,9 @@
 package dev.hooboolhoo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
 	private String author;
 	private String category;
 	
@@ -11,11 +11,25 @@ public class Game {
 	
 	private String gameTitle;
 	private String subTitle;
-	
-	List<Choice> choice;
+	private int leftButtonCount = 0;
+	private int rightButtonCount = 0;
+
+	List<Choice> choices;
+
 	List<Comment> comments;
 
 	private int totalCount;
+	
+  public Game() {
+        choices = new ArrayList<>();
+    }
+  
+	public Game(String gameTitle, String gamethumbnail) {
+		this.gameTitle = gameTitle;
+        this.gameThumbnail = gameThumbnail;
+        this.choices = choices;
+        this.comments = new ArrayList<>();
+    }
 
 //	public String getGameId() {
 //		return gameId;
@@ -61,8 +75,8 @@ public class Game {
 		this.subTitle = subTitle;
 	}
 
-	public List<Choice> getChoice() {
-		return choice;
+	public List<Choice> getChoices() {
+		return choices;
 	}
 	
 	public List<Comment> getComments() {
@@ -72,8 +86,8 @@ public class Game {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public void setChoice(List<Choice> choice) {
-		this.choice = choice;
+	public void setChoices(List<Choice> choice) {
+		this.choices = choices;
 	}
 
 
@@ -85,6 +99,31 @@ public class Game {
 		this.totalCount = totalCount;
 	}
 	
+	// 투표 수 증가 메서드 
+	public void voteLeft() {
+        leftButtonCount++;
+    }
+
+    public void voteRight() {
+        rightButtonCount++;
+    }
+
+    // 투표 수 조회 메서드
+    public int getLeftButtonCount() {
+        return leftButtonCount;
+    }
+
+    public int getRightButtonCount() {
+        return rightButtonCount;
+    }
 	
+    // 댓글 추가 메서드
+	public void addComment(Comment comment) {
+		comments.add(comment);
+	}
 	
+    
+    public void addChoice(Choice choice) {
+        this.choices.add(choice);
+    }
 }
