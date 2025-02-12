@@ -1,12 +1,14 @@
 package dev.hooboolhoo.service;
 
+import dev.hooboolhoo.model.Game;
+import dev.hooboolhoo.model.GameCreator;
 import dev.hooboolhoo.model.User;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class GameController {
-//    List<Game> gameList;
+    // List<Game> gameList;
     List<User> userList;
     Scanner sc = new Scanner(System.in);
     int input = -1;
@@ -22,10 +24,11 @@ public class GameController {
 
         AuthManager authManager = new AuthManager(userListController);
 
-        while(true) {
+        while (true) {
             System.out.println("0. 종료 1. 회원가입 2. 로그인");
             System.out.print("입력: ");
             input = sc.nextInt();
+            sc.nextLine(); // 개행 문자 제거
 
             switch (input) {
                 case 0:
@@ -55,27 +58,37 @@ public class GameController {
     }
 
     public boolean playGame() {
-        while(true) {
+        while (true) {
             System.out.println("메뉴");
             System.out.println("0. 게임 종료 1. 호불호 게임하기 2. 게임 만들기 3. 마이페이지");
             System.out.print("입력: ");
             input = sc.nextInt();
+            sc.nextLine(); // 개행 문자 제거
 
             switch (input) {
                 case 0:
                     System.out.println("게임을 종료합니다.");
                     return true;
                 case 1:
+                    // 호불호 게임하기 실행 로직 구현
+                    System.out.println("[호불호 게임하기]");
+                    // 예: vs 게임 플레이 메서드 호출
                     break;
                 case 2:
+                    // 게임 만들기: GameCreator를 이용해 vs 게임 생성
+                    System.out.println("[게임 만들기]");
+                    GameCreator gameCreator = new GameCreator();
+                    Game newGame = gameCreator.createGame();
+                    // 추가로 생성된 게임을 저장하거나 관리하는 로직이 있다면 작성
                     break;
                 case 3:
+                    // 마이페이지 로직 구현
+                    System.out.println("[마이페이지]");
                     break;
                 default:
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                     break;
             }
-
         }
     }
 }
