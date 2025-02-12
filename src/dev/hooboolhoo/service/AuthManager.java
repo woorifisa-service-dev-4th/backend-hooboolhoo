@@ -34,11 +34,12 @@ public class AuthManager {
             System.out.print("사용하실 아이디를 입력해주세요. (이메일) : ");
             String id = sc.nextLine();
 
+            int validationCode = checkValidation(id);
             // 이미 회원가입한 경우 or 이메일 형식이 유효하지 않은 경우
-            if (checkValidation(id) == 1) { // 이메일 형식이 유효하지 않은 경우
-                System.out.println("유효하지 않은 아이디 입니다. 다시 입력해주세요.");
+            if (validationCode == 1) { // 이메일 형식이 유효하지 않은 경우
+                System.out.println("다시 입력해주세요.");
             }
-            else if (checkValidation(id) == 2) { // 이미 회원가입한 이메일일 경우
+            else if (validationCode == 2) { // 이미 회원가입한 이메일일 경우
                 int choice;
 
                 while (true) {
@@ -46,6 +47,7 @@ public class AuthManager {
                     System.out.print("입력: ");
 
                     choice = sc.nextInt();
+                    sc.nextLine();
 
                     if (choice != 1 && choice != 2) {
                         System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -135,10 +137,10 @@ public class AuthManager {
 
         if (isAlreadySignUp) { // 이미 회원가입 된 이메일일 경우
             System.out.println("이미 가입된 이메일 입니다.");
-            return 1;
+            return 2;
         } else if (!matcher.matches()) { // 이메일 형식이 아닐 경우
             System.out.println("잘못된 이메일 형식입니다.");
-            return 2;
+            return 1;
         } else {
             return 0;
         }

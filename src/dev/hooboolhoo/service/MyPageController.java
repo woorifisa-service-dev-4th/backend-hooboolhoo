@@ -1,5 +1,9 @@
 package dev.hooboolhoo.service;
 
+import dev.hooboolhoo.model.Choice;
+import dev.hooboolhoo.model.Comment;
+import dev.hooboolhoo.model.Game;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,13 +44,44 @@ public class MyPageController {
         }
     }
 
+    private void showGame(Game game) {
+        System.out.printf("게임명 : %s\n", game.getGameTitle());
+        System.out.printf("게임 설명: %s\n", game.getSubTitle());
+        // System.out.printf("게임 제작자: %s\n", game.getAuthor());
+        System.out.printf("게임 카테고리: %s\n", game.getCategory());
+
+        System.out.println("게임 결과");
+        System.out.println("---------------------------------");
+        List <Choice> choices = game.getChoices();
+        System.out.printf("선택 1: %s / %s회 선택됨.\n", choices.get(0).getName(), choices.get(0).getCount());
+        System.out.printf("선택 2: %s / %s회 선택됨.\n", choices.get(1).getName(), choices.get(1).getCount());
+
+        System.out.println("댓글 목록");
+        System.out.println("---------------------------------");
+        for (Comment comment : game.getComments()) {
+            showChoice(comment);
+        }
+    }
+
+    private void showChoice(Comment comment) {
+        String tab = "";
+        if (comment.getChoiceType()) {
+            tab = "             ";
+        }
+
+        System.out.printf("%s 작성자: %s\n", tab, comment.getWriter());
+        System.out.printf("%s 내용: %s\n", tab, comment.getContent());
+        System.out.printf("%s 작성일자: %s\n", tab, comment.getDate().toString());
+    }
+
     private void showTestResults(CurrentUser currentUser) {
         List<String> testResults = currentUser.getUser().getTestResults();
+        int ind = 0;
 
         /*
         for (Game game: gameList) {
-            if (game.getTitle().equals(testResults[ind]) {
-               
+            if (game.getTitle().equals(testResults[ind++]) {
+               showGame(game);
         }
          */
 
@@ -54,5 +89,13 @@ public class MyPageController {
 
     private void showTests(CurrentUser currentUser) {
         List<String> myTests = currentUser.getUser().getMyTests();
+        int ind = 0;
+
+        /*
+        for (Game game: gameList) {
+            if (game.getAuthor().equals(myTests[ind++]) {
+               showGame(game);
+        }
+         */
     }
 }

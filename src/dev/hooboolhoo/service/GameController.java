@@ -19,8 +19,7 @@ public class GameController {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
 
         UserListController userListController = new UserListController();
-        // 유저 목록 로드하기 (더미 데이터)
-         userListController.loadUserList();
+         userListController.loadUserList(); // 유저 목록 로드하기 (더미 데이터)
 
         // Game List 가져오기
         // getGameList();
@@ -32,7 +31,7 @@ public class GameController {
             System.out.println("0. 종료 1. 회원가입 2. 로그인");
             System.out.print("입력: ");
             input = sc.nextInt();
-            sc.nextLine(); // 개행 문자 제거
+            sc.nextLine();
 
             switch (input) {
                 case 0:
@@ -44,6 +43,7 @@ public class GameController {
                     break;
                 case 2:
                     System.out.println("[로그인]");
+
                     if (authManager.signIn() == null) {
                         System.out.println("로그인 실패! 다시 시도해주세요.");
                     }
@@ -70,7 +70,7 @@ public class GameController {
             System.out.println("0. 게임 종료 1. 호불호 게임하기 2. 게임 만들기 3. 마이페이지");
             System.out.print("입력: ");
             input = sc.nextInt();
-            // sc.nextLine(); // 개행 문자 제거
+            sc.nextLine(); // 개행 문자 제거
 
             switch (input) {
                 case 0:
