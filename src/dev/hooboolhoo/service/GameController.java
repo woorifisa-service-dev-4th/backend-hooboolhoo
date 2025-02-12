@@ -14,13 +14,13 @@ public class GameController {
     public void startGame() {
         System.out.println("🐯🔥🐯호불호🐯🔥🐯");
 
-        // User List 가져오기
-        // getUserList();
+        UserListController userListController = new UserListController();
+        userListController.loadUserList();
 
         // Game List 가져오기
         // getGameList();
 
-        AuthManager authManager = new AuthManager();
+        AuthManager authManager = new AuthManager(userListController);
 
         while(true) {
             System.out.println("0. 종료 1. 회원가입 2. 로그인");
