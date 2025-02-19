@@ -6,7 +6,7 @@ public class CurrentUser {
     private static CurrentUser currentUser;
     private User user;
 
-    private CurrentUser() {}
+    public CurrentUser() {}
 
     public static CurrentUser getInstance() {
         if (currentUser == null) {

@@ -1,6 +1,6 @@
 package dev.hooboolhoo;
 
-import dev.hooboolhoo.model.Choice;
+//import dev.hooboolhoo.model.Choice;
 import dev.hooboolhoo.service.GameController;
 
 import java.util.Scanner;

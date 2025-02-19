@@ -22,10 +22,16 @@ public class GameList {
         choices3.add(new Choice("집밥"));
         choices3.add(new Choice("배달"));
         Game dummyGame3 = new Game("집밥 vs 배달", "썸네일 3","user3",choices3);
+        
+        List<Choice> choices4 = new ArrayList();
+        choices4.add(new Choice("깻잎"));
+        choices4.add(new Choice("상추"));
+        Game dummyGame4 = new Game("집밥 vs 배달", "썸네일 3","user3",choices4);
     	
     	gameList.add(dummyGame1);
     	gameList.add(dummyGame2);
     	gameList.add(dummyGame3);
+    	gameList.add(dummyGame4);
     }
 
     public List<Game> getGameList() {
