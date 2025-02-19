@@ -1,4 +1,4 @@
-package dev.test;
+package dev.hooboolhoo.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import dev.hooboolhoo.model.Game;

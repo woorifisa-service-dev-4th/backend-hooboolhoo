@@ -7,5 +7,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/woori-workspace/00.sw/org/mockito-core-4.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/woori-workspace/00.sw/org/byte-buddy-1.14.12.jar"/>
+	<classpathentry kind="lib" path="C:/woori-workspace/00.sw/org/byte-buddy-agent-1.14.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
